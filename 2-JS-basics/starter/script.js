@@ -45,11 +45,23 @@
 /*****************************
  *   Basic operators
  */
-var year, yearJohn, yearMark;
-year = 2077;
-yearJohn = year - 28;
-yearMark = year - 33;
-console.log(yearJohn);
-console.log(year * 2);
-console.log(typeof year);
-console.log(typeof NaN);
+// var year, yearJohn, yearMark;
+// year = 2077;
+// yearJohn = year - 28;
+// yearMark = year - 33;
+// console.log(yearJohn);
+// console.log(year * 2);
+// console.log(typeof year);
+// console.log(typeof NaN);
+
+var markMass = 50;
+var johnMass = 60;
+var markHeight = 10;
+var johnHeight = 8;
+
+var markBMI = markMass / (markHeight * markHeight);
+var johnBMI = johnMass / (johnHeight * johnHeight);
+
+var markHigher = markBMI > johnBMI;
+
+console.log(`Is Mark's BMI higher than John's? ${markHigher}`);
