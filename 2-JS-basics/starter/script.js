@@ -22,22 +22,34 @@
  *   Variable mutation and type coercion
  */
 
-var firstName = 'Jim';
-var age = 99;
+// var firstName = 'Jim';
+// var age = 99;
 
-console.log(firstName + ' ' + age);
+// console.log(firstName + ' ' + age);
 
-var job, isMarried;
-job = 'teacher';
-isMarried = true;
+// var job, isMarried;
+// job = 'teacher';
+// isMarried = true;
 
-console.log(firstName + ' is a ' + age + ' year old ' + job + ' ' + isMarried);
-console.log(age + isMarried);
+// console.log(firstName + ' is a ' + age + ' year old ' + job + ' ' + isMarried);
+// console.log(age + isMarried);
 
-// variable mutation
-age = 'ninety nine';
-job = 'retired';
+// // variable mutation
+// age = 'ninety nine';
+// job = 'retired';
 
-// alert(age);
-var lastName = prompt('what is his last name?');
-console.log(lastName);
+// // alert(age);
+// var lastName = prompt('what is his last name?');
+// console.log(lastName);
+
+/*****************************
+ *   Basic operators
+ */
+var year, yearJohn, yearMark;
+year = 2077;
+yearJohn = year - 28;
+yearMark = year - 33;
+console.log(yearJohn);
+console.log(year * 2);
+console.log(typeof year);
+console.log(typeof NaN);
