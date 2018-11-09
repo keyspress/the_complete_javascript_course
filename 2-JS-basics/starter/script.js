@@ -110,9 +110,9 @@
  *   CODE CHALLENGE 2
  */
 
-johnTeamScores = [89, 120, 103];
+johnTeamScores = [116, 9499, 123];
 mikeTeamScores = [116, 9499, 123];
-maryTeamScores = [97, 134, 105];
+maryTeamScores = [97, 13, 105];
 
 const calcAverage = scores => {
   const sum = scores.reduce((a, b) => a + b, 0);
