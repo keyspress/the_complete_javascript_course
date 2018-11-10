@@ -133,17 +133,19 @@
 //   console.log('No team is best so they are all losers...');
 // }
 
-const bills = [124, 48, 268];
+// Challenge 3
 
-const tipCalc = tab => {
-  if (tab < 50) {
-    return tab * 0.2;
-  } else if (tab <= 200) {
-    return tab * 0.15;
-  } else {
-    return tab * 0.1;
-  }
-};
+// const bills = [124, 48, 268];
 
-console.log(bills.map(item => tipCalc(item).toFixed(2)));
-console.log(bills.map(item => (tipCalc(item) + item).toFixed(2)));
+// const tipCalc = tab => {
+//   if (tab < 50) {
+//     return tab * 0.2;
+//   } else if (tab <= 200) {
+//     return tab * 0.15;
+//   } else {
+//     return tab * 0.1;
+//   }
+// };
+
+// console.log(bills.map(item => tipCalc(item).toFixed(2)));
+// console.log(bills.map(item => (tipCalc(item) + item).toFixed(2)));
