@@ -110,25 +110,40 @@
  *   CODE CHALLENGE 2
  */
 
-johnTeamScores = [116, 9499, 123];
-mikeTeamScores = [116, 9499, 123];
-maryTeamScores = [97, 13, 105];
+// johnTeamScores = [116, 9499, 123];
+// mikeTeamScores = [116, 9499, 123];
+// maryTeamScores = [97, 13, 105];
 
-const calcAverage = scores => {
-  const sum = scores.reduce((a, b) => a + b, 0);
-  return sum / scores.length;
+// const calcAverage = scores => {
+//   const sum = scores.reduce((a, b) => a + b, 0);
+//   return sum / scores.length;
+// };
+
+// johnTeamAvg = calcAverage(johnTeamScores);
+// mikeTeamAvg = calcAverage(mikeTeamScores);
+// maryTeamAvg = calcAverage(maryTeamScores);
+
+// if (johnTeamAvg > mikeTeamAvg && johnTeamAvg > maryTeamAvg) {
+//   console.log('John has the best team');
+// } else if (mikeTeamAvg > johnTeamAvg && mikeTeamAvg > maryTeamAvg) {
+//   console.log('Mike has the best team');
+// } else if (maryTeamAvg > johnTeamAvg && maryTeamAvg > mikeTeamAvg) {
+//   console.log('Mary has the best team');
+// } else {
+//   console.log('No team is best so they are all losers...');
+// }
+
+const bills = [124, 48, 268];
+
+const tipCalc = tab => {
+  if (tab < 50) {
+    return tab * 0.2;
+  } else if (tab <= 200) {
+    return tab * 0.15;
+  } else {
+    return tab * 0.1;
+  }
 };
 
-johnTeamAvg = calcAverage(johnTeamScores);
-mikeTeamAvg = calcAverage(mikeTeamScores);
-maryTeamAvg = calcAverage(maryTeamScores);
-
-if (johnTeamAvg > mikeTeamAvg && johnTeamAvg > maryTeamAvg) {
-  console.log('John has the best team');
-} else if (mikeTeamAvg > johnTeamAvg && mikeTeamAvg > maryTeamAvg) {
-  console.log('Mike has the best team');
-} else if (maryTeamAvg > johnTeamAvg && maryTeamAvg > mikeTeamAvg) {
-  console.log('Mary has the best team');
-} else {
-  console.log('No team is best so they are all losers...');
-}
+console.log(bills.map(item => tipCalc(item).toFixed(2)));
+console.log(bills.map(item => (tipCalc(item) + item).toFixed(2)));
