@@ -152,37 +152,28 @@
 
 // Challenge 4
 
-// var markMass = 50;
-// var johnMass = 60;
-// var markHeight = 10;
-// var johnHeight = 8;
-
-// var markBMI = markMass / (markHeight * markHeight);
-// var johnBMI = johnMass / (johnHeight * johnHeight);
-
-// var markHigher = markBMI > johnBMI;
-
-// console.log(`Is Mark's BMI higher than John's? ${markHigher}`);
-
 var mark = {
   fullName: 'Marky Mark',
-  mass: 80,
+  mass: 60,
   height: 10,
   calcBMI: function() {
-    return this.mass / (this.height * this.height);
+    this.BMI = this.mass / (this.height * this.height);
+    return this.BMI;
   }
 };
-mark.BMI = mark.calcBMI();
 
 var john = {
   fullName: 'Johnny Johnny Yes Papa',
   mass: 50,
   height: 10,
   calcBMI: function() {
-    return this.mass / (this.height * this.height);
+    this.BMI = this.mass / (this.height * this.height);
+    return this.BMI;
   }
 };
-john.BMI = john.calcBMI();
+
+mark.calcBMI();
+john.calcBMI();
 
 if (mark.BMI > john.BMI) {
   console.log(`${mark.fullName} is chunkier with a BMI of ${mark.BMI}`);
