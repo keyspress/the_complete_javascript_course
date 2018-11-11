@@ -172,13 +172,10 @@ var john = {
   }
 };
 
-mark.calcBMI();
-john.calcBMI();
-
-if (mark.BMI > john.BMI) {
-  console.log(`${mark.fullName} is chunkier with a BMI of ${mark.BMI}`);
-} else if (john.BMI > mark.BMI) {
-  console.log(`${john.fullName} is chunkier with a BMI of ${john.BMI}`);
+if (mark.calcBMI() > john.calcBMI()) {
+  console.log(`${mark.fullName} is chunkier with a BMI of ${mark.calcBMI()}`);
+} else if (john.calcBMI() > mark.calcBMI()) {
+  console.log(`${john.fullName} is chunkier with a BMI of ${john.calcBMI()}`);
 } else {
   console.log(`${mark.fullName} and ${john.fullName} are equally chunky`);
 }
