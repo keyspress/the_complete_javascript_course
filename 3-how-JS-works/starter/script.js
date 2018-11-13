@@ -63,3 +63,37 @@ function third() {
 */
 ///////////////////////////////////////
 // Lecture: The this keyword
+
+// console.log(this);
+
+// calculateAge(1935);
+
+// function calculateAge(year) {
+//   console.log(2018 - year);
+//   console.log(this);
+// }
+
+var john = {
+  name: 'john',
+  yearOfBirth: 1990,
+  calculateAge: function() {
+    console.log(this);
+    console.log(2018 - this.yearOfBirth);
+
+    // function innerFunction() {
+    //   console.log(this);
+    // }
+    // innerFunction();
+  }
+};
+
+john.calculateAge();
+
+var mike = {
+  name: 'mike',
+  yearOfBirth: 1980
+};
+
+mike.calculateAge = john.calculateAge;
+
+mike.calculateAge();
