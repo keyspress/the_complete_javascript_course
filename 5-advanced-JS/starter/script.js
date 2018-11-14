@@ -30,19 +30,55 @@
 
 // ********************************* Object.create ***************************************************
 
-var personProto = {
-  calculateAge: function() {
-    console.log(2018 - this.yearOfBirth);
-  }
+// var personProto = {
+//   calculateAge: function() {
+//     console.log(2018 - this.yearOfBirth);
+//   }
+// };
+
+// var john = Object.create(personProto);
+// john.name = 'john';
+// john.yearOfBirth = 1900;
+// john.job = 'nothing';
+
+// var jane = Object.create(personProto, {
+//   name: { value: 'jane' },
+//   yearOfBirth: { value: 1867 },
+//   job: { value: 'sleeper' }
+// });
+
+// ************************** primitives vs objects ***************************************************
+
+var a = 23;
+var b = a;
+
+a = 46;
+console.log(a, b);
+
+var obj1 = {
+  name: 'john',
+  age: 26
 };
 
-var john = Object.create(personProto);
-john.name = 'john';
-john.yearOfBirth = 1900;
-john.job = 'nothing';
+var obj2 = obj1;
 
-var jane = Object.create(personProto, {
-  name: { value: 'jane' },
-  yearOfBirth: { value: 1867 },
-  job: { value: 'sleeper' }
-});
+obj1.age = 99;
+
+console.log(obj1.age);
+console.log(obj2.age);
+
+var age = 24;
+var obj = {
+  name: 'Jim Bob',
+  city: 'Whoville'
+};
+
+function change(a, b) {
+  a = 30;
+  b.city = 'Atlantis';
+}
+
+change(age, obj);
+
+console.log(age);
+console.log(obj.city);
