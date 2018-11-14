@@ -143,19 +143,69 @@
 
 // ******************************************* IIFE *******************************************************
 
-function game() {
-  var score = Math.random() * 10;
-  console.log(score >= 5);
+// function game() {
+//   var score = Math.random() * 10;
+//   console.log(score >= 5);
+// }
+
+// game();
+
+// (function() {
+//   var score = Math.random() * 10;
+//   console.log(score >= 5);
+// })();
+
+// (function(goodLuck) {
+//   var score = Math.random() * 10;
+//   console.log(score >= 5 - goodLuck);
+// })(5);
+
+// ******************************************** Closures **********************************************************
+
+// function retirement(retirementAge) {
+//   var a = ' years left until retirement.';
+//   return function(yearOfBirth) {
+//     var age = 2018 - yearOfBirth;
+//     console.log(retirementAge - age + a);
+//   };
+// }
+
+// var retirementUS = retirement(66);
+// retirementUS(1976);
+// retirement(77)(1976);
+// var retirementGermany = retirement(65);
+// var retirementGreece = retirement(13);
+
+// retirementGermany(1990);
+// retirementUS(1990);
+// retirementGreece(1990);
+
+// function interviewQuestion(job) {
+//   if (job === 'designer') {
+//     return function(name) {
+//       console.log(name + ', can you please explain what the color red is?');
+//     };
+//   } else if (job === 'teacher') {
+//     return function(name) {
+//       console.log(name + ', why are teenagers such idiots?');
+//     };
+//   } else {
+//     return function(name) {
+//       console.log(name + ', why are you such a lazy bum?');
+//     };
+//   }
+// }
+
+function interviewQuestion(job) {
+  return function(name) {
+    if (job === 'designer') {
+      console.log(name + ', can you please explain what the color red is?');
+    } else if (job === 'teacher') {
+      console.log(name + ', why are teenagers such idiots?');
+    } else {
+      console.log(name + ', why are you such a lazy bum?');
+    }
+  };
 }
 
-game();
-
-(function() {
-  var score = Math.random() * 10;
-  console.log(score >= 5);
-})();
-
-(function(goodLuck) {
-  var score = Math.random() * 10;
-  console.log(score >= 5 - goodLuck);
-})(5);
+interviewQuestion('teacher')('bob');
