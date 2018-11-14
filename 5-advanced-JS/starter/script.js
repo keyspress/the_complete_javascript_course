@@ -118,25 +118,44 @@
 // var rates = arrayCalc(ages, maxHeartRate);
 // console.log(rates);
 
-function interviewQuestion(job) {
-  if (job === 'designer') {
-    return function(name) {
-      console.log(name + ', can you please explain what the color red is?');
-    };
-  } else if (job === 'teacher') {
-    return function(name) {
-      console.log(name + ', why are teenagers such idiots?');
-    };
-  } else {
-    return function(name) {
-      console.log(name + ', why are you such a lazy bum?');
-    };
-  }
+// function interviewQuestion(job) {
+//   if (job === 'designer') {
+//     return function(name) {
+//       console.log(name + ', can you please explain what the color red is?');
+//     };
+//   } else if (job === 'teacher') {
+//     return function(name) {
+//       console.log(name + ', why are teenagers such idiots?');
+//     };
+//   } else {
+//     return function(name) {
+//       console.log(name + ', why are you such a lazy bum?');
+//     };
+//   }
+// }
+
+// var teacherQuestion = interviewQuestion('teacher');
+// var designerQuestion = interviewQuestion('designer');
+
+// teacherQuestion('Elmo');
+// designerQuestion('Bilbo');
+// interviewQuestion('eater')('Wilbur');
+
+// ******************************************* IIFE *******************************************************
+
+function game() {
+  var score = Math.random() * 10;
+  console.log(score >= 5);
 }
 
-var teacherQuestion = interviewQuestion('teacher');
-var designerQuestion = interviewQuestion('designer');
+game();
 
-teacherQuestion('Elmo');
-designerQuestion('Bilbo');
-interviewQuestion('eater')('Wilbur');
+(function() {
+  var score = Math.random() * 10;
+  console.log(score >= 5);
+})();
+
+(function(goodLuck) {
+  var score = Math.random() * 10;
+  console.log(score >= 5 - goodLuck);
+})(5);
