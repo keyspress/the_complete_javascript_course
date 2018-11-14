@@ -10,6 +10,13 @@ GAME RULES:
 */
 var scores, roundScore, activePlayer, gamePlaying;
 var prevRoll = [0, 0];
+var winScore = 100;
+
+var winInput = document.getElementById('win-score');
+
+document.querySelector('.btn-win').addEventListener('click', function() {
+  winScore = winInput.value;
+});
 
 init();
 
@@ -49,7 +56,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
       scores[activePlayer];
 
     // check if player won
-    if (scores[activePlayer] >= 100) {
+    if (scores[activePlayer] >= winScore) {
       document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
       document.querySelector('.dice').style.display = 'none';
       document
