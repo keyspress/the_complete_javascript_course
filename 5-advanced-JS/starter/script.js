@@ -196,16 +196,96 @@
 //   }
 // }
 
-function interviewQuestion(job) {
-  return function(name) {
-    if (job === 'designer') {
-      console.log(name + ', can you please explain what the color red is?');
-    } else if (job === 'teacher') {
-      console.log(name + ', why are teenagers such idiots?');
-    } else {
-      console.log(name + ', why are you such a lazy bum?');
+// function interviewQuestion(job) {
+//   return function(name) {
+//     if (job === 'designer') {
+//       console.log(name + ', can you please explain what the color red is?');
+//     } else if (job === 'teacher') {
+//       console.log(name + ', why are teenagers such idiots?');
+//     } else {
+//       console.log(name + ', why are you such a lazy bum?');
+//     }
+//   };
+// }
+
+// interviewQuestion('teacher')('bob');
+
+// ****************************************** Bind, call and apply *********************************************************************
+
+var john = {
+  name: 'johnny',
+  age: 400,
+  job: 'duster',
+  presentation: function(style, timeOfDay) {
+    if (style === 'formal') {
+      console.log(
+        'Good ' +
+          timeOfDay +
+          ", Ladies and gentlemen! I'm " +
+          this.name +
+          ", I'm " +
+          this.age +
+          ", I'm a " +
+          this.job +
+          " and I'm " +
+          this.age +
+          ' years old.'
+      );
+    } else if (style === 'friendly') {
+      console.log(
+        "Sup, Ladies and gentlemen! I'm " +
+          this.name +
+          ", I'm " +
+          this.age +
+          ", I'm a " +
+          this.job +
+          " and I'm " +
+          this.age +
+          ' years old. ' +
+          'Have a nice ' +
+          timeOfDay
+      );
     }
-  };
+  }
+};
+
+var emily = {
+  name: 'Em',
+  age: 35,
+  job: 'designer'
+};
+
+john.presentation('formal', 'morning');
+
+john.presentation.call(emily, 'friendly', 'afternoon');
+
+// john.presentation.apply(emily, ['formal', 'evening']);
+
+var johnFriendly = john.presentation.bind(john, 'friendly');
+johnFriendly('evening');
+johnFriendly('night');
+
+var emilyformal = john.presentation.bind(emily, 'formal');
+emilyformal('bacon');
+
+var years = [1990, 1965, 1937, 2005, 1998];
+
+function arrayCalc(arr, fn) {
+  var arrRes = [];
+  for (var i = 0; i < arr.length; i++) {
+    arrRes.push(fn(arr[i]));
+  }
+  return arrRes;
 }
 
-interviewQuestion('teacher')('bob');
+function calculateAge(el) {
+  return 2018 - el;
+}
+
+function isFullAge(limit, el) {
+  return el >= limit;
+}
+
+var ages = arrayCalc(years, calculateAge);
+var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
+console.log(fullJapan);
