@@ -5,22 +5,12 @@
 // ***********************************************************************
 
 var budgetController = (function() {
-  var x = 23;
-
-  var add = function(a) {
-    return x + a;
-  };
-
-  return {
-    publicTest: function(b) {
-      return add(b);
-    }
-  };
+  // code
 })();
 
 // ***********************************************************************
 // ***********************************************************************
-//                             UI CONTROLLER MODULE
+//                           UI CONTROLLER MODULE
 // ***********************************************************************
 // ***********************************************************************
 
@@ -30,15 +20,25 @@ var UIController = (function() {
 
 // ***********************************************************************
 // ***********************************************************************
-//                             APP CONTROLLER MODULE
+//                         GLOBAL APP CONTROLLER MODULE
 // ***********************************************************************
 // ***********************************************************************
 
 var controller = (function(budgetCtrl, UICtrl) {
-  var z = budgetCtrl.publicTest(5);
-  return {
-    anotherPublic: function() {
-      console.log(z);
-    }
+  var ctrlAddItem = function() {
+    // 1. get field input data
+    // 2. add item to budget controller
+    // 3. add item to ui
+    // 4. calculate budget
+    // 5. display budget on ui
+    console.log('ctrl add');
   };
+
+  document.querySelector('.add__btn').addEventListener('click', ctrlAddItem);
+
+  document.addEventListener('keypress', function(event) {
+    if (event.keyCode === 13 || event.which === 13) {
+      ctrlAddItem();
+    }
+  });
 })(budgetController, UIController);
