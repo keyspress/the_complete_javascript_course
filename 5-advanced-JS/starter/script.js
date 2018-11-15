@@ -212,80 +212,80 @@
 
 // ****************************************** Bind, call and apply *********************************************************************
 
-var john = {
-  name: 'johnny',
-  age: 400,
-  job: 'duster',
-  presentation: function(style, timeOfDay) {
-    if (style === 'formal') {
-      console.log(
-        'Good ' +
-          timeOfDay +
-          ", Ladies and gentlemen! I'm " +
-          this.name +
-          ", I'm " +
-          this.age +
-          ", I'm a " +
-          this.job +
-          " and I'm " +
-          this.age +
-          ' years old.'
-      );
-    } else if (style === 'friendly') {
-      console.log(
-        "Sup, Ladies and gentlemen! I'm " +
-          this.name +
-          ", I'm " +
-          this.age +
-          ", I'm a " +
-          this.job +
-          " and I'm " +
-          this.age +
-          ' years old. ' +
-          'Have a nice ' +
-          timeOfDay
-      );
-    }
-  }
-};
+// var john = {
+//   name: 'johnny',
+//   age: 400,
+//   job: 'duster',
+//   presentation: function(style, timeOfDay) {
+//     if (style === 'formal') {
+//       console.log(
+//         'Good ' +
+//           timeOfDay +
+//           ", Ladies and gentlemen! I'm " +
+//           this.name +
+//           ", I'm " +
+//           this.age +
+//           ", I'm a " +
+//           this.job +
+//           " and I'm " +
+//           this.age +
+//           ' years old.'
+//       );
+//     } else if (style === 'friendly') {
+//       console.log(
+//         "Sup, Ladies and gentlemen! I'm " +
+//           this.name +
+//           ", I'm " +
+//           this.age +
+//           ", I'm a " +
+//           this.job +
+//           " and I'm " +
+//           this.age +
+//           ' years old. ' +
+//           'Have a nice ' +
+//           timeOfDay
+//       );
+//     }
+//   }
+// };
 
-var emily = {
-  name: 'Em',
-  age: 35,
-  job: 'designer'
-};
+// var emily = {
+//   name: 'Em',
+//   age: 35,
+//   job: 'designer'
+// };
 
-john.presentation('formal', 'morning');
+// john.presentation('formal', 'morning');
 
-john.presentation.call(emily, 'friendly', 'afternoon');
+// john.presentation.call(emily, 'friendly', 'afternoon');
 
-// john.presentation.apply(emily, ['formal', 'evening']);
+// // john.presentation.apply(emily, ['formal', 'evening']);
 
-var johnFriendly = john.presentation.bind(john, 'friendly');
-johnFriendly('evening');
-johnFriendly('night');
+// var johnFriendly = john.presentation.bind(john, 'friendly');
+// johnFriendly('evening');
+// johnFriendly('night');
 
-var emilyformal = john.presentation.bind(emily, 'formal');
-emilyformal('bacon');
+// var emilyformal = john.presentation.bind(emily, 'formal');
+// emilyformal('bacon');
 
-var years = [1990, 1965, 1937, 2005, 1998];
+// var years = [1990, 1965, 1937, 2005, 1998];
 
-function arrayCalc(arr, fn) {
-  var arrRes = [];
-  for (var i = 0; i < arr.length; i++) {
-    arrRes.push(fn(arr[i]));
-  }
-  return arrRes;
-}
+// function arrayCalc(arr, fn) {
+//   var arrRes = [];
+//   for (var i = 0; i < arr.length; i++) {
+//     arrRes.push(fn(arr[i]));
+//   }
+//   return arrRes;
+// }
 
-function calculateAge(el) {
-  return 2018 - el;
-}
+// function calculateAge(el) {
+//   return 2018 - el;
+// }
 
-function isFullAge(limit, el) {
-  return el >= limit;
-}
+// function isFullAge(limit, el) {
+//   return el >= limit;
+// }
 
-var ages = arrayCalc(years, calculateAge);
-var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
-console.log(fullJapan);
+// var ages = arrayCalc(years, calculateAge);
+// var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
+// console.log(fullJapan);
