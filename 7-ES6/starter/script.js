@@ -54,11 +54,34 @@
 //                   BLOCKS AND IIFEs
 // *********************************************************
 
-{
-  const a = 1;
-  let b = 2;
-  var c = 3;
+// {
+//   const a = 1;
+//   let b = 2;
+//   var c = 3;
+// }
+
+// // console.log(a + b);
+// console.log(c);
+
+// *********************************************************
+//                         STRINGS
+// *********************************************************
+
+let firstName = 'John';
+let lastName = 'Smith';
+const yearOfBirth = 1990;
+function calcAge(year) {
+  return 2018 - year;
 }
 
-// console.log(a + b);
-console.log(c);
+console.log(
+  `This is ${firstName} ${lastName}. He was born in ${yearOfBirth}. Today he is ${calcAge(
+    yearOfBirth
+  )} years old.`
+);
+
+const n = `${firstName} ${lastName}`;
+console.log(n.startsWith('J'));
+console.log(n.endsWith('ith'));
+console.log(n.includes('n Sm'));
+console.log(firstName.repeat(5000));
