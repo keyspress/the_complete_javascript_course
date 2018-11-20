@@ -316,20 +316,51 @@ function Person(name) {
 // isFullAge6(1990, 2015, 1995);
 // isFullAge6(1990, 2015, 1995, 2016, 1987);
 
+// // es5
+// function isFullAge5(limit) {
+//   var argsArr = Array.prototype.slice.call(arguments, 1);
+//   argsArr.forEach(function(cur) {
+//     console.log(2018 - cur >= limit);
+//   });
+// }
+// // isFullAge5(21, 1990, 2015, 1995);
+// // isFullAge5(21, 1990, 2015, 1995, 2016, 1987);
+
+// // es6
+// function isFullAge6(limit, ...years) {
+//   years.forEach(cur => console.log(2018 - cur >= limit));
+// }
+
+// isFullAge6(16, 1990, 2015, 1995);
+// isFullAge6(16, 1990, 2015, 1995, 2016, 1987);
+
+// *********************************************************
+//                     DEFAULT PARAMETERS
+// *********************************************************
+
 // es5
-function isFullAge5(limit) {
-  var argsArr = Array.prototype.slice.call(arguments, 1);
-  argsArr.forEach(function(cur) {
-    console.log(2018 - cur >= limit);
-  });
-}
-// isFullAge5(21, 1990, 2015, 1995);
-// isFullAge5(21, 1990, 2015, 1995, 2016, 1987);
+// function SmithPerson(firstName, yearOfBirth, lastName, nationality) {
+//   lastName === undefined ? (lastName = 'Smith') : lastName;
+//   nationality === undefined ? (nationality = 'american') : nationality;
+
+//   this.firstName = firstName;
+//   this.lastName = lastName;
+//   this.yearOfBirth = yearOfBirth;
+//   this.nationality = nationality;
+// }
 
 // es6
-function isFullAge6(limit, ...years) {
-  years.forEach(cur => console.log(2018 - cur >= limit));
+function SmithPerson(
+  firstName,
+  yearOfBirth,
+  lastName = 'Smith',
+  nationality = 'american'
+) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.yearOfBirth = yearOfBirth;
+  this.nationality = nationality;
 }
 
-isFullAge6(16, 1990, 2015, 1995);
-isFullAge6(16, 1990, 2015, 1995, 2016, 1987);
+var john = new SmithPerson('John', 1990);
+var emily = new SmithPerson('Emily', 1983, 'Diaz', 'spanish');
