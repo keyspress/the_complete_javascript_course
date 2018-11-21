@@ -510,82 +510,169 @@ function Person(name) {
 //                     CHALLENGE
 // ********************************************************
 
-class Park {
-  constructor(name, buildYear, numTrees, area) {
+// class Park {
+//   constructor(name, buildYear, numTrees, area) {
+//     this.name = name;
+//     this.buildYear = buildYear;
+//     this.numTrees = numTrees;
+//     this.area = area;
+//   }
+//   calcTreeDensity() {
+//     console.log(
+//       `${this.name} has a tree density of ${this.numTrees /
+//         this.area} trees per square km`
+//     );
+//   }
+// }
+
+// const calcAverageParkAge = parksArr => {
+//   let sum = 0;
+//   const now = parseInt(new Date().getFullYear());
+//   parksArr.forEach(park => {
+//     sum += now - park.buildYear;
+//   });
+//   console.log(
+//     `Our ${parksArr.length} parks have and average age of ${sum /
+//       parksArr.length} years.`
+//   );
+// };
+
+// class Street {
+//   constructor(name, buildYear, length, size = 'normal') {
+//     this.name = name;
+//     this.buildYear = buildYear;
+//     this.length = length;
+//     this.size = size;
+//   }
+//   streetDesc() {
+//     console.log(
+//       `${this.name}, built in ${this.buildYear}, is a ${this.size} street.`
+//     );
+//   }
+// }
+
+// const calcAverageStreetLength = streetArr => {
+//   let total = 0;
+//   streetArr.forEach(cur => {
+//     total += cur.length;
+//   });
+//   console.log(
+//     `Our ${
+//       streetArr.length
+//     } streets have a total length of ${total} km, with an average of ${total /
+//       streetArr.length} km.`
+//   );
+// };
+
+// const greenPark = new Park('Green Park', 1975, 800, 100);
+// const nationalPark = new Park('National Park', 1962, 1200, 400);
+// const oakPark = new Park('Oak Park', 1979, 500, 200);
+// parksArr = [greenPark, nationalPark, greenPark];
+
+// const oceanAvenue = new Street('Ocean Avenue', 1999, 6, 'big');
+// const evergreenStreet = new Street('Evergreen Street', 2000, 1, 'small');
+// const fourthStreet = new Street('4th Street', 2015, 3);
+// const sunsetBoulevard = new Street('Sunset Boulevard', 1982, 10, 'huge');
+// streetArr = [oceanAvenue, evergreenStreet, fourthStreet, sunsetBoulevard];
+
+// console.log('----PARKS REPORT----');
+// calcAverageParkAge(parksArr);
+// greenPark.calcTreeDensity();
+// nationalPark.calcTreeDensity();
+// oakPark.calcTreeDensity();
+// // console.log(ages.find(cur => cur >= 18));
+// const overThousand = parksArr.find(cur => cur.numTrees > 1000);
+// console.log(`${overThousand.name} has more than 1000 trees.`);
+// console.log('----STREETS REPORT----');
+// calcAverageStreetLength(streetArr);
+// oceanAvenue.streetDesc();
+// evergreenStreet.streetDesc();
+// fourthStreet.streetDesc();
+// sunsetBoulevard.streetDesc();
+
+// *********************************************************
+//               CHALLENGE - TEACHER SOLUTION
+// *********************************************************
+
+class Element {
+  constructor(name, buildYear) {
     this.name = name;
     this.buildYear = buildYear;
-    this.numTrees = numTrees;
-    this.area = area;
   }
-  calcTreeDensity() {
+}
+
+class Park extends Element {
+  constructor(name, buildYear, area, numTrees) {
+    super(name, buildYear);
+    this.area = area;
+    this.numTrees = numTrees;
+  }
+  treeDensity() {
+    const density = this.numTrees / this.area;
     console.log(
-      `${this.name} has a tree density of ${this.numTrees /
-        this.area} trees per square km`
+      `${this.name} has a tree density of ${density} trees per square km.`
     );
   }
 }
 
-const calcAverageParkAge = parksArr => {
-  let sum = 0;
-  const now = parseInt(new Date().getFullYear());
-  parksArr.forEach(park => {
-    sum += now - park.buildYear;
-  });
-  console.log(
-    `Our ${parksArr.length} parks have and average age of ${sum /
-      parksArr.length} years.`
-  );
-};
-
-class Street {
-  constructor(name, buildYear, length, size = 'normal') {
-    this.name = name;
-    this.buildYear = buildYear;
+class Street extends Element {
+  constructor(name, buildYear, length, size = 3) {
+    super(name, buildYear);
     this.length = length;
     this.size = size;
   }
-  streetDesc() {
+  classifyStreet() {
+    const classification = new Map();
+    classification.set(1, 'tiny');
+    classification.set(2, 'small');
+    classification.set(3, 'normal');
+    classification.set(4, 'big');
+    classification.set(5, 'huge');
     console.log(
-      `${this.name}, built in ${this.buildYear}, is a ${this.size} street.`
+      `${this.name}, built in ${this.buildYear}, is a ${classification.get(
+        this.size
+      )} street.`
     );
   }
 }
 
-const calcAverageStreetLength = streetArr => {
-  let total = 0;
-  streetArr.forEach(cur => {
-    total += cur.length;
-  });
+const allParks = [
+  new Park('Green Park', 1987, 0.2, 215),
+  new Park('National Park', 1894, 2.9, 3541),
+  new Park('Oak Park', 1953, 0.4, 949)
+];
+const allStreets = [
+  new Street('Ocean Avenue', 1999, 1.1, 4),
+  new Street('Evergreen Street', 2008, 2.7, 2),
+  new Street('4th Street', 2015, 0.8),
+  new Street('Sunset Boulevard', 1982, 2.5, 5)
+];
+
+function calc(arr) {
+  const sum = arr.reduce((prev, cur, index) => prev + cur, 0);
+  return [sum, sum / arr.length];
+}
+
+function reportParks(p) {
+  console.log('-----PARKS REPORT-----');
+  p.forEach(el => el.treeDensity());
+  const ages = p.map(el => new Date().getFullYear() - el.buildYear);
+  const [totalAge, avgAge] = calc(ages);
+  console.log(`Our ${p.length} parks have and average of ${avgAge} years.`);
+  const i = p.map(el => el.numTrees).findIndex(el => el >= 1000);
+  console.log(`${p[i].name} has more than 1000 trees.`);
+}
+
+function reportStreets(s) {
+  console.log('-----STREETS REPORT-----');
+  const [totalLength, avgLength] = calc(s.map(el => el.length));
   console.log(
     `Our ${
-      streetArr.length
-    } streets have a total length of ${total} km, with an average of ${total /
-      streetArr.length} km.`
+      s.length
+    } streets have a total length of ${totalLength} km, with and average of ${avgLength} km.`
   );
-};
+  s.forEach(el => el.classifyStreet());
+}
 
-const greenPark = new Park('Green Park', 1975, 800, 100);
-const nationalPark = new Park('National Park', 1962, 1200, 400);
-const oakPark = new Park('Oak Park', 1979, 500, 200);
-parksArr = [greenPark, nationalPark, greenPark];
-
-const oceanAvenue = new Street('Ocean Avenue', 1999, 6, 'big');
-const evergreenStreet = new Street('Evergreen Street', 2000, 1, 'small');
-const fourthStreet = new Street('4th Street', 2015, 3);
-const sunsetBoulevard = new Street('Sunset Boulevard', 1982, 10, 'huge');
-streetArr = [oceanAvenue, evergreenStreet, fourthStreet, sunsetBoulevard];
-
-console.log('----PARKS REPORT----');
-calcAverageParkAge(parksArr);
-greenPark.calcTreeDensity();
-nationalPark.calcTreeDensity();
-oakPark.calcTreeDensity();
-// console.log(ages.find(cur => cur >= 18));
-const overThousand = parksArr.find(cur => cur.numTrees > 1000);
-console.log(`${overThousand.name} has more than 1000 trees.`);
-console.log('----STREETS REPORT----');
-calcAverageStreetLength(streetArr);
-oceanAvenue.streetDesc();
-evergreenStreet.streetDesc();
-fourthStreet.streetDesc();
-sunsetBoulevard.streetDesc();
+reportParks(allParks);
+reportStreets(allStreets);
