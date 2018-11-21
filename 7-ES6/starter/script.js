@@ -447,61 +447,145 @@ function Person(name) {
 //                     SUB-CLASSES
 // ********************************************************
 
-// es5
-var Person5 = function(name, yearOfBirth, job) {
-  this.name = name;
-  this.yearOfBirth = yearOfBirth;
-  this.job = job;
-};
+// // es5
+// var Person5 = function(name, yearOfBirth, job) {
+//   this.name = name;
+//   this.yearOfBirth = yearOfBirth;
+//   this.job = job;
+// };
 
-Person5.prototype.calculateAge = function() {
-  var age = new Date().getFullYear() - this.yearOfBirth;
-  console.log(age);
-};
+// Person5.prototype.calculateAge = function() {
+//   var age = new Date().getFullYear() - this.yearOfBirth;
+//   console.log(age);
+// };
 
-var Athlete5 = function(name, yearOfBirth, job, olympicGames, medals) {
-  Person5.call(this, name, yearOfBirth, job);
-  this.olympicGames = olympicGames;
-  this.medals = medals;
-};
+// var Athlete5 = function(name, yearOfBirth, job, olympicGames, medals) {
+//   Person5.call(this, name, yearOfBirth, job);
+//   this.olympicGames = olympicGames;
+//   this.medals = medals;
+// };
 
-Athlete5.prototype = Object.create(Person5.prototype);
+// Athlete5.prototype = Object.create(Person5.prototype);
 
-Athlete5.prototype.wonMedal = function() {
-  this.medals++;
-  console.log(this.medals);
-};
+// Athlete5.prototype.wonMedal = function() {
+//   this.medals++;
+//   console.log(this.medals);
+// };
 
-var johnAthlete5 = new Athlete5('John', 1990, 'swimmer', 3, 10);
-johnAthlete5.calculateAge();
-johnAthlete5.wonMedal();
+// var johnAthlete5 = new Athlete5('John', 1990, 'swimmer', 3, 10);
+// johnAthlete5.calculateAge();
+// johnAthlete5.wonMedal();
 
-// es6
-class Person6 {
-  constructor(name, yearOfBirth, job) {
+// // es6
+// class Person6 {
+//   constructor(name, yearOfBirth, job) {
+//     this.name = name;
+//     this.yearOfBirth = yearOfBirth;
+//     this.job = job;
+//   }
+//   calculateAge() {
+//     const age = new Date().getFullYear() - this.yearOfBirth;
+//     console.log(age);
+//   }
+// }
+
+// class Athlete6 extends Person6 {
+//   constructor(name, yearOfBirth, job, olympicGames, medals) {
+//     super(name, yearOfBirth, job);
+//     this.olympicGames = olympicGames;
+//     this.medals = medals;
+//   }
+//   wonMedal() {
+//     this.medals++;
+//     console.log(this.medals);
+//   }
+// }
+
+// const johnAthlete6 = new Athlete6('John', 1991, 'swimmer', 3, 10);
+
+// johnAthlete6.wonMedal();
+// johnAthlete6.calculateAge();
+
+// *********************************************************
+//                     CHALLENGE
+// ********************************************************
+
+class Park {
+  constructor(name, buildYear, numTrees, area) {
     this.name = name;
-    this.yearOfBirth = yearOfBirth;
-    this.job = job;
+    this.buildYear = buildYear;
+    this.numTrees = numTrees;
+    this.area = area;
   }
-  calculateAge() {
-    const age = new Date().getFullYear() - this.yearOfBirth;
-    console.log(age);
-  }
-}
-
-class Athlete6 extends Person6 {
-  constructor(name, yearOfBirth, job, olympicGames, medals) {
-    super(name, yearOfBirth, job);
-    this.olympicGames = olympicGames;
-    this.medals = medals;
-  }
-  wonMedal() {
-    this.medals++;
-    console.log(this.medals);
+  calcTreeDensity() {
+    console.log(
+      `${this.name} has a tree density of ${this.numTrees /
+        this.area} trees per square km`
+    );
   }
 }
 
-const johnAthlete6 = new Athlete6('John', 1991, 'swimmer', 3, 10);
+const calcAverageParkAge = parksArr => {
+  let sum = 0;
+  const now = parseInt(new Date().getFullYear());
+  parksArr.forEach(park => {
+    sum += now - park.buildYear;
+  });
+  console.log(
+    `Our ${parksArr.length} parks have and average age of ${sum /
+      parksArr.length} years.`
+  );
+};
 
-johnAthlete6.wonMedal();
-johnAthlete6.calculateAge();
+class Street {
+  constructor(name, buildYear, length, size = 'normal') {
+    this.name = name;
+    this.buildYear = buildYear;
+    this.length = length;
+    this.size = size;
+  }
+  streetDesc() {
+    console.log(
+      `${this.name}, built in ${this.buildYear}, is a ${this.size} street.`
+    );
+  }
+}
+
+const calcAverageStreetLength = streetArr => {
+  let total = 0;
+  streetArr.forEach(cur => {
+    total += cur.length;
+  });
+  console.log(
+    `Our ${
+      streetArr.length
+    } streets have a total length of ${total} km, with an average of ${total /
+      streetArr.length} km.`
+  );
+};
+
+const greenPark = new Park('Green Park', 1975, 800, 100);
+const nationalPark = new Park('National Park', 1962, 1200, 400);
+const oakPark = new Park('Oak Park', 1979, 500, 200);
+parksArr = [greenPark, nationalPark, greenPark];
+
+const oceanAvenue = new Street('Ocean Avenue', 1999, 6, 'big');
+const evergreenStreet = new Street('Evergreen Street', 2000, 1, 'small');
+const fourthStreet = new Street('4th Street', 2015, 3);
+const sunsetBoulevard = new Street('Sunset Boulevard', 1982, 10, 'huge');
+streetArr = [oceanAvenue, evergreenStreet, fourthStreet, sunsetBoulevard];
+
+console.log('----PARKS REPORT----');
+calcAverageParkAge(parksArr);
+greenPark.calcTreeDensity();
+nationalPark.calcTreeDensity();
+oakPark.calcTreeDensity();
+// console.log(ages.find(cur => cur >= 18));
+const overThousand = parksArr.find(cur => cur.numTrees > 1000);
+console.log(`${overThousand.name} has more than 1000 trees.`);
+console.log('----STREETS REPORT----');
+calcAverageStreetLength(streetArr);
+oceanAvenue.streetDesc();
+evergreenStreet.streetDesc();
+fourthStreet.streetDesc();
+sunsetBoulevard.streetDesc();
