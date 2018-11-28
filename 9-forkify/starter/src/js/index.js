@@ -9,7 +9,7 @@ import Likes from './models/Likes';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
 import * as listView from './views/listView';
-import Likes from './models/Likes';
+import * as likesView from './views/likesView';
 
 // Global state
 const state = {};
@@ -77,7 +77,7 @@ const controlRecipe = async () => {
       state.recipe.calcServings();
       // render recipe
       clearLoader();
-      recipeView.renderRecipe(state.recipe);
+      recipeView.renderRecipe(state.recipe, state.likes.isLiked(id));
     } catch (err) {
       alert('Error processing recipe');
     }
@@ -102,7 +102,7 @@ const controlList = () => {
 };
 
 //*****************************************************************
-//                      LIST CONTROLLER
+//                      LIKES CONTROLLER
 //*****************************************************************
 const controlLike = () => {
   if (!state.likes) state.likes = new Likes();
@@ -114,9 +114,14 @@ const controlLike = () => {
       state.recipe.author,
       state.recipe.img
     );
+    likesView.toggleLikeBtn(true);
+    likesView.renderLike(newLike);
   } else {
     state.likes.deleteLike(currentID);
+    likesView.toggleLikeBtn(false);
+    likesView.deleteLike(currentID);
   }
+  likesView.toggleLikeMenu(state.likes.getNumLikes());
 };
 
 elements.shopping.addEventListener('click', e => {
