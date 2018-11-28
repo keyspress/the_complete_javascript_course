@@ -124,6 +124,13 @@ const controlLike = () => {
   likesView.toggleLikeMenu(state.likes.getNumLikes());
 };
 
+window.addEventListener('load', () => {
+  state.likes = new Likes();
+  state.likes.readStorage();
+  likesView.toggleLikeMenu(state.likes.getNumLikes());
+  state.likes.likes.forEach(like => likesView.renderLike(like));
+});
+
 elements.shopping.addEventListener('click', e => {
   const id = e.target.closest('.shopping_item').dataset.itemid;
   if (e.target.matches('.shopping__delete, .shopping__delete *')) {
